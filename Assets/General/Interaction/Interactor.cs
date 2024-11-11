@@ -8,22 +8,13 @@ public class Interactor : MonoBehaviour
 {
     private List<IInteractable> _interactablesInRange = new List<IInteractable>();
     [ReadOnly] private int _numInteractablesInRange = 0;
-    private bool _canInteract = true;
 
-    private void OnEnable(){
-        Manager_Event.InteractionManager.OnStartInteraction.Get().AddListener(DisableInteraction);
-        Manager_Event.InteractionManager.OnEndInteraction.Get().AddListener(EnableInteraction);
-    }
-
-    private void OnDisable(){
-        Manager_Event.InteractionManager.OnStartInteraction.Get().RemoveListener(DisableInteraction);
-        Manager_Event.InteractionManager.OnEndInteraction.Get().RemoveListener(EnableInteraction);
+    private void Update(){
+        if(PlayerInputManager.INTERACT)
+            TryInteract();
     }
 
     public void TryInteract(){
-        if(!_canInteract)
-            return;
-
         IInteractable interactable = null;
 
         //Try Gets a interactable in Range
@@ -32,8 +23,8 @@ public class Interactor : MonoBehaviour
 
             if(interactable.CanInteract())
                 break;
-
-            _interactablesInRange.Remove(interactable);
+            else
+                _interactablesInRange.Remove(interactable);
         }
 
         //If no interactables left in Range
@@ -41,16 +32,6 @@ public class Interactor : MonoBehaviour
             return;
 
         interactable.Interact(this);
-    }
-    public void SetInteractState(bool state){
-        _canInteract = state;
-    }
-
-    private void DisableInteraction(){
-        SetInteractState(false);
-    }
-    private void EnableInteraction(){
-        SetInteractState(true);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
