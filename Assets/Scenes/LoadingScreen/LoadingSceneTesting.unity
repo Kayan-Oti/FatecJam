@@ -192,6 +192,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1298847056675708531, guid: c60f1a1e7db084e44952908df1b41606, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6255189679329684665, guid: c60f1a1e7db084e44952908df1b41606, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -329,19 +333,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1203333345957094128, guid: f0b65531a82389c459e62ade18377386, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1203333345957094128, guid: f0b65531a82389c459e62ade18377386, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1203333345957094128, guid: f0b65531a82389c459e62ade18377386, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1203333345957094128, guid: f0b65531a82389c459e62ade18377386, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -325
       objectReference: {fileID: 0}
     - target: {fileID: 4354983428166558194, guid: f0b65531a82389c459e62ade18377386, type: 3}
       propertyPath: m_LocalPosition.x
@@ -389,18 +393,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8830165163203306592, guid: f0b65531a82389c459e62ade18377386, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8830165163203306592, guid: f0b65531a82389c459e62ade18377386, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8830165163203306592, guid: f0b65531a82389c459e62ade18377386, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 8830165163203306592, guid: f0b65531a82389c459e62ade18377386, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: -175
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979501194832889180, guid: f0b65531a82389c459e62ade18377386, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -483,7 +491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1902446282
 MonoBehaviour:
   m_ObjectHideFlags: 0
