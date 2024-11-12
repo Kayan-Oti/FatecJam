@@ -17,4 +17,8 @@ public class FMODEvents : Singleton<FMODEvents>
     [field: Header("LoadingScreen")]
     [field: SerializeField] public EventReference LoadingScreenStart { get; private set;}
     [field: SerializeField] public EventReference LoadingScreenEnd { get; private set;}
+
+    [field: Header("Player")]
+    [field: SerializeField] public EventReference FootSteps { get; private set;}
+    [field: SerializeField] public EventReference OnGrounded { get; private set;}
 }
