@@ -128,3 +128,17 @@ MonoBehaviour:
       Data3: 1187674042
       Data4: -211365565
     Path: event:/UI/LoadScreenEnd
+  <FootSteps>k__BackingField:
+    Guid:
+      Data1: 1158635764
+      Data2: 1239443067
+      Data3: -294803055
+      Data4: 770026295
+    Path: event:/Player/FootSteps
+  <OnGrounded>k__BackingField:
+    Guid:
+      Data1: 545385992
+      Data2: 1276310420
+      Data3: -840692598
+      Data4: 812775796
+    Path: event:/Player/Onground

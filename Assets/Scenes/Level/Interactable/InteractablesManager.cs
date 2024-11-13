@@ -7,7 +7,6 @@ public class InteractablesManager : MonoBehaviour
 {
     [SerializeField] private UI_ManagerAnimation _animator;
     [SerializeField] private GameObject _button;
-    [SerializeField] private Image _imageDisplay;
     private Interactable_Informantion _currentInteractable;
 
     private void Start() {
@@ -19,14 +18,15 @@ public class InteractablesManager : MonoBehaviour
         _animator.PlayAnimation("Start", () => _button.SetActive(true));
 
         _currentInteractable = interactable;
-        _imageDisplay.sprite = interactable._spriteDisplay;
+        interactable._displayObject.SetActive(true);
     }
 
     public void OnEndCollect(){
         _button.SetActive(false);
-        _animator.PlayAnimation("End", () => Manager_Event.InteractionManager.OnEndInteraction.Get().Invoke());
-
-        _currentInteractable.DisableCollectable();
-        _currentInteractable = null;
+        _animator.PlayAnimation("End", () => {
+            Manager_Event.InteractionManager.OnEndInteraction.Get().Invoke();
+            _currentInteractable.DisableCollectable();
+            _currentInteractable = null;
+        });
     }
 }

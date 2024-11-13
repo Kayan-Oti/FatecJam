@@ -1125,6 +1125,7 @@ MonoBehaviour:
   _creditsButton: {fileID: 1838024962}
   _settingsFirstButton: {fileID: 1420264232456844209}
   _settingsContainer: {fileID: 1426461093}
+  _playScene: 2
 --- !u!114 &1991858629
 MonoBehaviour:
   m_ObjectHideFlags: 0

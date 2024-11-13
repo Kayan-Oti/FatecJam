@@ -12,6 +12,10 @@ public class Manager_Menu : MonoBehaviour
     [Header("Containers")]
     [SerializeField] private GameObject _settingsContainer;
 
+    [Header("Levels")]
+    [SerializeField] private SceneIndex _playScene;
+
+
     private void OnEnable() {
         Manager_Event.GameManager.OnLoadedScene.Get().AddListener(OnLoadScene);
     }
@@ -42,7 +46,7 @@ public class Manager_Menu : MonoBehaviour
 
     public void OnClick_Play(){
         LeavingMenu();
-        GameManager.Instance.LoadScene(SceneIndex.Level);
+        GameManager.Instance.LoadScene(_playScene);
     }
 
     //--Menu Settings

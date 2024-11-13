@@ -35,10 +35,10 @@ public class Interactor : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        _numInteractablesInRange++;
         IInteractable interactable = other.GetComponent<IInteractable>();
 
         if(interactable != null){
+            _numInteractablesInRange++;
             if(!interactable.CanInteract())
                 return;
             interactable.SetIsInRange(true);
@@ -47,10 +47,10 @@ public class Interactor : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        _numInteractablesInRange--;
         IInteractable interactable = other.GetComponent<IInteractable>();
 
         if(_interactablesInRange.Contains(interactable)){
+            _numInteractablesInRange--;
             interactable.SetIsInRange(false);
             _interactablesInRange.Remove(interactable);
         }

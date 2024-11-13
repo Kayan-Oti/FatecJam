@@ -4,8 +4,8 @@ using UnityEngine;
     [CreateAssetMenu]
     public class ScriptableStats : ScriptableObject
     {
-        [Header("LAYERS")] [Tooltip("Set this to the layer your player is on")]
-        public LayerMask PlayerLayer;
+        [Header("Ignore Layer")] [Tooltip("Set this to the layeres you want to ignore collision")]
+        public LayerMask IgnoreLayers;
 
         [Header("INPUT")] [Tooltip("Makes all Input snap to an integer. Prevents gamepads from walking slowly. Recommended value is true to ensure gamepad/keybaord parity.")]
         public bool SnapInput = true;

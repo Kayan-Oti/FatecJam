@@ -70,6 +70,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerController
 
     private void FixedUpdate()
     {
+        if(_time < 0.3f)
+            return;
+
         CheckCollisions();
 
         HandleJump();
@@ -83,15 +86,15 @@ public class PlayerMovement : MonoBehaviour, IPlayerController
     #region Collisions
     
     private float _frameLeftGrounded = float.MinValue;
-    private bool _grounded;
+    private bool _grounded = true;
 
     private void CheckCollisions()
     {
         Physics2D.queriesStartInColliders = false;
 
         // Ground and Ceiling
-        bool groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
-        bool ceilingHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.up, _stats.GrounderDistance, ~_stats.PlayerLayer);
+        bool groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.IgnoreLayers);
+        bool ceilingHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.up, _stats.GrounderDistance, ~_stats.IgnoreLayers);
 
         // Hit a Ceiling
         if (ceilingHit) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
