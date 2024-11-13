@@ -6,11 +6,12 @@ using UnityEngine;
 public class PlayerInputManager : MonoBehaviour
 {
     private MainInputSystem playerInputActions;
-    public static Vector2 MOVEMENT;
-    public static bool JUMP_DOWN;
-    public static bool JUMP_HELD;
-    public static bool INTERACT;
-    public static bool CROUCH;
+    public static Vector2 MOVEMENT = Vector2.zero;
+    public static bool JUMP_DOWN = false;
+    public static bool JUMP_HELD = false;
+    public static bool INTERACT = false;
+    public static bool CROUCH = false;
+    private bool _canMove = true;
 
 
     private void Awake(){
@@ -21,15 +22,22 @@ public class PlayerInputManager : MonoBehaviour
         EnableInput();
         Manager_Event.InteractionManager.OnStartInteraction.Get().AddListener(DisableInput);
         Manager_Event.InteractionManager.OnEndInteraction.Get().AddListener(EnableInput);
+        Manager_Event.InteractionManager.OnStartTimeline.Get().AddListener(DisableCanMove);
+        Manager_Event.InteractionManager.OnEndTimeline.Get().AddListener(EnableCanMove);
     }
 
     private void OnDisable(){
         DisableInput();
         Manager_Event.InteractionManager.OnStartInteraction.Get().RemoveListener(DisableInput);
         Manager_Event.InteractionManager.OnEndInteraction.Get().RemoveListener(EnableInput);
+        Manager_Event.InteractionManager.OnStartTimeline.Get().AddListener(DisableCanMove);
+        Manager_Event.InteractionManager.OnEndTimeline.Get().AddListener(EnableCanMove);
     }
 
     private void Update(){
+        if(!_canMove)
+            return;
+
         //Movement
         MOVEMENT = playerInputActions.Player.Movement.ReadValue<Vector2>();
         JUMP_DOWN = playerInputActions.Player.Jump.WasPressedThisFrame();
@@ -45,5 +53,12 @@ public class PlayerInputManager : MonoBehaviour
     }
     private void DisableInput(){
         playerInputActions.Player.Disable();
+    }
+
+    private void EnableCanMove(){
+        _canMove = true;
+    }
+    private void DisableCanMove(){
+        _canMove = false;
     }
 }

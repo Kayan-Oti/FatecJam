@@ -60,10 +60,10 @@ public class PlayerAnimator : MonoBehaviour
         //Player Flip Direction
         HandleSpriteFlip();
 
-        //Particle Movement
+        //Player Animation + Particle
         HandleIdleSpeed();
 
-        //Player Movement
+        //Player Extra Animation
         HandleCharacterTilt();
     }
 

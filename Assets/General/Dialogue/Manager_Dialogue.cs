@@ -11,7 +11,7 @@ public class Manager_Dialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _dialogueText;
     [SerializeField] private GameObject _button;
-    [SerializeField] private float typeSpeed = 1;
+    [SerializeField] private float typeSpeed = 15f;
     private SO_Dialogue _dialogue;
     private Action _onEndDialogueAction;
 

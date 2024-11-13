@@ -192,10 +192,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1298847056675708531, guid: c60f1a1e7db084e44952908df1b41606, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6255189679329684665, guid: c60f1a1e7db084e44952908df1b41606, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -627,66 +623,6 @@ PrefabInstance:
     - target: {fileID: 2142643119753548103, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <FootSteps>k__BackingField.Path
-      value: event:/Player/FootSteps
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <OnGrounded>k__BackingField.Path
-      value: event:/Player/Onground
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <Ongrounded>k__BackingField.Path
-      value: event:/Player/Onground
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <FootSteps>k__BackingField.Guid.Data1
-      value: 1158635764
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <FootSteps>k__BackingField.Guid.Data2
-      value: 1239443067
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <FootSteps>k__BackingField.Guid.Data3
-      value: -294803055
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <FootSteps>k__BackingField.Guid.Data4
-      value: 770026295
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <OnGrounded>k__BackingField.Guid.Data1
-      value: 545385992
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <OnGrounded>k__BackingField.Guid.Data2
-      value: 1276310420
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <OnGrounded>k__BackingField.Guid.Data3
-      value: -840692598
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <OnGrounded>k__BackingField.Guid.Data4
-      value: 812775796
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <Ongrounded>k__BackingField.Guid.Data1
-      value: 545385992
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <Ongrounded>k__BackingField.Guid.Data2
-      value: 1276310420
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <Ongrounded>k__BackingField.Guid.Data3
-      value: -840692598
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836848298042349558, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
-      propertyPath: <Ongrounded>k__BackingField.Guid.Data4
-      value: 812775796
       objectReference: {fileID: 0}
     - target: {fileID: 6028110272539097519, guid: f1cfefdb91aab394bb3ad2d3d2262c11, type: 3}
       propertyPath: m_LocalPosition.x

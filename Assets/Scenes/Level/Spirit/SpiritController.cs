@@ -14,6 +14,9 @@ public class SpiritController : MonoBehaviour
 
     private void FollowPlayer()
     {
+        if (target == null)
+            return;
+            
         // Move suavemente o fantasma até a posição alvo usando Lerp
         transform.position = Vector2.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
     }

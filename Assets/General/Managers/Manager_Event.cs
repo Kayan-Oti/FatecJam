@@ -27,9 +27,14 @@ public static class Manager_Event
     }
 
     public class InteractionEvents{
-        public class StartDialogueEvent: UnityEvent {}
-        public GenericEvent<StartDialogueEvent> OnStartInteraction = new GenericEvent<StartDialogueEvent>();
-        public class EndDialogueEvent: UnityEvent {}
-        public GenericEvent<EndDialogueEvent> OnEndInteraction = new GenericEvent<EndDialogueEvent>();
+        public class StartInteractionEvent: UnityEvent {}
+        public GenericEvent<StartInteractionEvent> OnStartInteraction = new GenericEvent<StartInteractionEvent>();
+        public class EndInteractionEvent: UnityEvent {}
+        public GenericEvent<EndInteractionEvent> OnEndInteraction = new GenericEvent<EndInteractionEvent>();
+
+        public class StartTimelineEvent: UnityEvent {}
+        public GenericEvent<StartTimelineEvent> OnStartTimeline = new GenericEvent<StartTimelineEvent>();
+        public class EndTimelineEvent: UnityEvent {}
+        public GenericEvent<EndTimelineEvent> OnEndTimeline = new GenericEvent<EndTimelineEvent>();
     }
 }

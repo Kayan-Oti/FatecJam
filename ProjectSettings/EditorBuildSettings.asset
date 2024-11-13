@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Menu.unity
     guid: acfe0e700ab20194999142d0d6ba21a3
   - enabled: 1
-    path: Assets/Scenes/Level/Level.unity
-    guid: a203ab04599b67a46b38f8ec7a4c3656
+    path: Assets/Scenes/Level/Caverna/Caverna.unity
+    guid: 2560a5e8ce50fec42b908b7367cb32b4
+  - enabled: 1
+    path: Assets/Scenes/Level/Floresta/Floresta.unity
+    guid: 244c48df6b2f9ac46a06dc142b98e9af
   m_configObjects: {}
