@@ -24694,6 +24694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anim: {fileID: 3501733103664550413}
   _sprite: {fileID: 1243407261110338226}
+  _spiritTarget: {fileID: 3593614296418765864}
   _maxIdleSpeed: 2
   _maxTilt: 5
   _tiltSpeed: 20

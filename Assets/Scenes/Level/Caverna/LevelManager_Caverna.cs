@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using MyBox;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class LevelManager_Floresta : MonoBehaviour
+public class LevelManager_Caverna : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _timelime;
     [SerializeField] private UI_ManagerAnimation _cutsceneAnimator;
+    [SerializeField] private CinemachineImpulseSource _cameraShake;
 
     private void OnEnable() {
         Manager_Event.GameManager.OnLoadedScene.Get().AddListener(StartCutscene);
@@ -25,11 +27,14 @@ public class LevelManager_Floresta : MonoBehaviour
 
     [ButtonMethod]
     public void EndCutscene(){
-        GetComponent<ControllPlayerByCode>().enabled = false;
         Manager_Event.InteractionManager.OnEndTimeline.Get().Invoke();
     }
 
     public void EndAnimationBlackStrips(){
         _cutsceneAnimator.PlayAnimation("End");
+    }
+
+    public void CavernaTrigger1(){
+        _cameraShake.GenerateImpulseWithVelocity(new Vector3(1,-1,0));
     }
 }
