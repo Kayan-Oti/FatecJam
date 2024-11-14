@@ -6,18 +6,18 @@ using UnityEngine;
 /// </summary>
 public class PlayerAnimator : MonoBehaviour
 {
-    [Header("References")] [SerializeField]
-    private Animator _anim;
-
+    [Header("References")]
+    [SerializeField] private Animator _anim;
     [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private Transform _spiritTarget;
 
-    [Header("Settings")] [SerializeField, Range(1f, 3f)]
-    private float _maxIdleSpeed = 2;
-
+    [Header("Settings")] 
+    [SerializeField, Range(1f, 3f)] private float _maxIdleSpeed = 2;
     [SerializeField] private float _maxTilt = 5;
     [SerializeField] private float _tiltSpeed = 20;
 
-    [Header("Particles")] [SerializeField] private ParticleSystem _jumpParticles;
+    [Header("Particles")] 
+    [SerializeField] private ParticleSystem _jumpParticles;
     [SerializeField] private ParticleSystem _launchParticles;
     [SerializeField] private ParticleSystem _moveParticles;
     [SerializeField] private ParticleSystem _landParticles;
@@ -81,7 +81,13 @@ public class PlayerAnimator : MonoBehaviour
 
     private void HandleSpriteFlip()
     {
-        if (_player.FrameInput.x != 0) _sprite.flipX = _player.FrameInput.x < 0;
+        if (_player.FrameInput.x != 0){
+            //Compare if curent Flip is diferent from Input
+            if(_sprite.flipX != _player.FrameInput.x < 0){
+                _sprite.flipX = _player.FrameInput.x < 0;
+                _spiritTarget.localPosition *= new Vector2(-1, 1);
+            }
+        }
     }
 
     private void HandleIdleSpeed()

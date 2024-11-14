@@ -60,5 +60,14 @@ public class PlayerInputManager : MonoBehaviour
     }
     private void DisableCanMove(){
         _canMove = false;
+
+        //Movement
+        MOVEMENT = Vector2.zero;
+        JUMP_DOWN = false;
+        JUMP_HELD = false;
+        CROUCH = false;
+
+        //Interaction
+        INTERACT = false;
     }
 }
