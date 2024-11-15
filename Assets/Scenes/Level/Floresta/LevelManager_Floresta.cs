@@ -17,6 +17,10 @@ public class LevelManager_Floresta : MonoBehaviour
         Manager_Event.GameManager.OnLoadedScene.Get().RemoveListener(StartCutscene);
     }
 
+    private void Start() {
+        AudioManager.Instance.InitializeAmbience(FMODEvents.Instance.WindAmbience);
+    }
+
     [ButtonMethod]
     public void StartCutscene(){
         _timelime.Play();

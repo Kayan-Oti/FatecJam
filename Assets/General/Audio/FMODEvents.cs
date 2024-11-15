@@ -10,6 +10,9 @@ public class FMODEvents : Singleton<FMODEvents>
     [field: Header("Music")]
     [field: SerializeField] public EventReference MenuMusic { get; private set;}
 
+    [field: Header("Ambience")]
+    [field: SerializeField] public EventReference WindAmbience { get; private set;}
+
     [field: Header("UI")]
     [field: SerializeField] public EventReference ButtonHover { get; private set;}
     [field: SerializeField] public EventReference ButtonClick { get; private set;}
