@@ -12,9 +12,6 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Transform _spiritTarget;
 
     [Header("Settings")] 
-    [SerializeField, Range(1f, 3f)] private float _maxIdleSpeed = 2;
-    [SerializeField] private float _maxTilt = 5;
-    [SerializeField] private float _tiltSpeed = 20;
 
     [Header("Particles")] 
     [SerializeField] private ParticleSystem _jumpParticles;
@@ -23,8 +20,8 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private ParticleSystem _landParticles;
 
     private IPlayerController _player;
-    private bool _grounded;
     private ParticleSystem.MinMaxGradient _currentGradient;
+    private bool _grounded;
 
     private void Awake()
     {
@@ -61,10 +58,7 @@ public class PlayerAnimator : MonoBehaviour
         HandleSpriteFlip();
 
         //Player Animation + Particle
-        HandleIdleSpeed();
-
-        //Player Extra Animation
-        HandleCharacterTilt();
+        HandleMovement();
     }
 
     #region Update Methods
@@ -90,17 +84,15 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    private void HandleIdleSpeed()
+
+    private void HandleMovement()
     {
         var inputStrength = Mathf.Abs(_player.FrameInput.x);
-        _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, inputStrength));
-        _moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
-    }
 
-    private void HandleCharacterTilt()
-    {
-        var runningTilt = _grounded ? Quaternion.Euler(0, 0, _maxTilt * _player.FrameInput.x) : Quaternion.identity;
-        _anim.transform.up = Vector3.RotateTowards(_anim.transform.up, runningTilt * Vector2.up, _tiltSpeed * Time.deltaTime, 0f);
+        _anim.SetBool(RunningKey, inputStrength != 0);
+
+        //Particle Scale base on Speed
+        _moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
     }
 
     #endregion
@@ -145,8 +137,8 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnCrouched(bool state){
         if(state){
-            _anim.SetTrigger(CrouchStartKey);
             _anim.ResetTrigger(CrouchEndKey);
+            _anim.SetTrigger(CrouchStartKey);
         }
         else 
             _anim.SetTrigger(CrouchEndKey);
@@ -171,8 +163,7 @@ public class PlayerAnimator : MonoBehaviour
     private static readonly int JumpKey = Animator.StringToHash("Jump");
     private static readonly int CrouchStartKey = Animator.StringToHash("CrouchStart");
     private static readonly int CrouchEndKey = Animator.StringToHash("CrouchEnd");
-
-
+    private static readonly int RunningKey = Animator.StringToHash("Running");
 
     #endregion
 }

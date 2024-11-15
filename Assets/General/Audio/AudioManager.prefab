@@ -100,6 +100,13 @@ MonoBehaviour:
       Data3: -1761638230
       Data4: -645998193
     Path: event:/Music/MenuMusic
+  <WindAmbience>k__BackingField:
+    Guid:
+      Data1: 203621472
+      Data2: 1281407233
+      Data3: 1746368133
+      Data4: -130960071
+    Path: event:/Ambience/Wind
   <ButtonHover>k__BackingField:
     Guid:
       Data1: 1159539473

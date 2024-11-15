@@ -19,11 +19,13 @@ public class AudioManager : Singleton<AudioManager>
     private Bus ambienceBus;
     private Bus sfxBus;
 
+    //Actives Sounds
     private List<EventInstance> _eventInstances;
     private List<StudioEventEmitter> _eventEmitters;
     private EventInstance _ambienceEventInstance;
     private EventInstance _musicEventInstance;
 
+    #region Setup
     private void Awake(){
         _eventInstances = new List<EventInstance>();
         _eventEmitters = new List<StudioEventEmitter>();
@@ -40,7 +42,9 @@ public class AudioManager : Singleton<AudioManager>
         ambienceBus.setVolume(ambienceVolume);
         sfxBus.setVolume(sfxVolume);
     }
+    #endregion
 
+    #region SFX
     public void PlayOneShot(EventReference sound, Vector3 worldPos = default){
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
@@ -50,19 +54,28 @@ public class AudioManager : Singleton<AudioManager>
         _eventInstances.Add(eventInstance);
         return eventInstance;
     }
+    #endregion
 
+    #region EventEmitter - By Distance
     public StudioEventEmitter InitializeEventEmitter(EventReference eventReference, GameObject emitterGameObject){
         StudioEventEmitter emitter = emitterGameObject.GetComponent<StudioEventEmitter>();
         emitter.EventReference = eventReference;
         _eventEmitters.Add(emitter);
         return emitter;
     }
+    #endregion
 
+    #region Ambience
     public void InitializeAmbience(EventReference ambienceEventReference){
         _ambienceEventInstance = CreateEventInstance(ambienceEventReference);
         _ambienceEventInstance.start();
     }
+    public void StopAmbience(){
+        _ambienceEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+    #endregion
 
+    #region Music
     public void InitializeMusic(EventReference musicEventReference, MusicIntensity intensity = MusicIntensity.Intensity1){
         _musicEventInstance = CreateEventInstance(musicEventReference);
         SetMusicIntensity(intensity);
@@ -76,7 +89,9 @@ public class AudioManager : Singleton<AudioManager>
     public void SetMusicIntensity(MusicIntensity intensity){
         _musicEventInstance.setParameterByName("MusicIntensity", (float)intensity);
     }
+    #endregion
 
+    #region CleanUp
     private void CleanUp(){
         foreach(EventInstance eventInstance in _eventInstances){
             eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -92,4 +107,5 @@ public class AudioManager : Singleton<AudioManager>
         Debug.Log("On Destroy");
         CleanUp();
     }
+    #endregion
 }

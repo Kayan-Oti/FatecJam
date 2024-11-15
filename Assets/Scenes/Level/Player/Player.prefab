@@ -4843,7 +4843,7 @@ GameObject:
   - component: {fileID: 5762837879120580639}
   m_Layer: 7
   m_Name: Interactor
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24695,9 +24695,6 @@ MonoBehaviour:
   _anim: {fileID: 3501733103664550413}
   _sprite: {fileID: 1243407261110338226}
   _spiritTarget: {fileID: 3593614296418765864}
-  _maxIdleSpeed: 2
-  _maxTilt: 5
-  _tiltSpeed: 20
   _jumpParticles: {fileID: 8730825114102421894}
   _launchParticles: {fileID: 6770993231054760946}
   _moveParticles: {fileID: 5842574773788371005}
@@ -24761,7 +24758,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.16666667, y: 0.16666667, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7244913364177936452}
@@ -24786,7 +24783,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24806,13 +24803,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9ec0ca269ec0b4f4fa12877c83d9dd88, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 2cd0b49fbf2393943891eea1d56de8d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 1, y: 1.4}
+  m_DrawMode: 0
+  m_Size: {x: 2.4066668, y: 1.6116667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -24828,7 +24825,7 @@ Animator:
   m_GameObject: {fileID: 5158975227479607936}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e5b5f4662f713845b0c28185c4ea62c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9b9b285e96ba5da40b1ba67f00be11be, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -34745,7 +34742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1221773203120755432}
   m_Layer: 0
-  m_Name: CrounchCheck
+  m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
