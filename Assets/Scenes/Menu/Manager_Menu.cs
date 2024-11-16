@@ -3,14 +3,16 @@ using UnityEngine.EventSystems;
 
 public class Manager_Menu : MonoBehaviour
 {
-    [Header("Buttons")]
+    [Header("Play")]
     [SerializeField] private GameObject _playButton;
-    [SerializeField] private GameObject _settingsButton;
-    [SerializeField] private GameObject _creditsButton;
-    [SerializeField] private GameObject _settingsFirstButton;
-
-    [Header("Containers")]
+    [Header("Settings")]
     [SerializeField] private GameObject _settingsContainer;
+    [SerializeField] private GameObject _settingsButton;
+    [SerializeField] private GameObject _settingsFirstButton;
+    [Header("Credits")]
+    [SerializeField] private GameObject _creditsContainer;
+    [SerializeField] private GameObject _creditsButton;
+    [SerializeField] private GameObject _creditsFirstButton;
 
     [Header("Levels")]
     [SerializeField] private SceneIndex _playScene;
@@ -27,6 +29,7 @@ public class Manager_Menu : MonoBehaviour
     private void Start(){
         EventSystem.current.SetSelectedGameObject(_playButton);
         _settingsContainer.SetActive(false);
+        _creditsContainer.SetActive(false);
     }
 
     #region Scene Management
@@ -58,6 +61,17 @@ public class Manager_Menu : MonoBehaviour
     public void OnClick_SettingsClose(){
         _settingsContainer.SetActive(false);
         EventSystem.current.SetSelectedGameObject(_settingsButton);
+    }
+
+    //--Menu Credits
+    public void OnClick_Credits(){
+        _creditsContainer.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(_creditsFirstButton);
+    }
+
+    public void OnClick_CreditsClose(){
+        _creditsContainer.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(_creditsButton);
     }
 
     //--Menu Exit

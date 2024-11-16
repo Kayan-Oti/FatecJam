@@ -27,6 +27,14 @@ public class Manager_Dialogue : MonoBehaviour
         _button.SetActive(false);
     }
 
+    private void Update() {
+        if(!_isDialogueActive)
+            return;
+        
+        if(PlayerInputManager.DIALOGUE_BUTTON_DOWN)
+            Onclick();
+    }
+
     private void ResetText(){
         _nameText.text = "";
         _dialogueText.text = "";

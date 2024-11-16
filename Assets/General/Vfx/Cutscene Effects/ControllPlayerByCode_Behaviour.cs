@@ -8,6 +8,7 @@ using UnityEngine.Playables;
 public class ControllPlayerByCode_Behaviour : PlayableBehaviour
 {
     [SerializeField] private Vector2 _movement = Vector2.zero;
+    [SerializeField] private bool _isWalking = false;
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
@@ -17,5 +18,6 @@ public class ControllPlayerByCode_Behaviour : PlayableBehaviour
             return;
 
         controller.Movement = _movement;
+        controller.IsWalking = _isWalking;
     }
 }

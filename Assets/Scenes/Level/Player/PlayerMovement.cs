@@ -16,15 +16,17 @@ public class PlayerMovement : MonoBehaviour, IPlayerController
     private Rigidbody2D _rb;
     private CapsuleCollider2D _col;
     private FrameInput _frameInput;
-    private Vector2 _frameVelocity;
+    public Vector2 _frameVelocity;
     private bool _cachedQueryStartInColliders;
 
     #region Interface
 
     public Vector2 FrameInput => _frameInput.Move;
+    public float FrameVelocityY => _frameVelocity.y;
     public event Action<bool, float> GroundedChanged;
     public event Action Jumped;
     public event Action<bool> Crouch;
+    public bool IsWalking => _frameInput.Walking;
 
     #endregion
 
@@ -47,20 +49,24 @@ public class PlayerMovement : MonoBehaviour, IPlayerController
 
     private void GatherInput()
     {
+        //Inputs
         _frameInput = new FrameInput
         {
             JumpDown = PlayerInputManager.JUMP_DOWN,
             JumpHeld = PlayerInputManager.JUMP_HELD,
             Move = PlayerInputManager.MOVEMENT,
-            Crouch = PlayerInputManager.CROUCH
+            Crouch = PlayerInputManager.CROUCH,
+            Walking = PlayerInputManager.WALKING
         };
 
+        //Controller DeadZone
         if (_stats.SnapInput)
         {
             _frameInput.Move.x = Mathf.Abs(_frameInput.Move.x) < _stats.HorizontalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.x);
             _frameInput.Move.y = Mathf.Abs(_frameInput.Move.y) < _stats.VerticalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.y);
         }
 
+        //Jump values
         if (_frameInput.JumpDown)
         {
             _jumpToConsume = true;
@@ -166,7 +172,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerController
         }
         else
         {
-            _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+            if(IsWalking)
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed/2, _stats.Acceleration/2 * Time.fixedDeltaTime);
+            else
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
         }
     }
 
@@ -277,6 +286,7 @@ public struct FrameInput
     public bool JumpHeld;
     public Vector2 Move;
     public bool Crouch;
+    public bool Walking;
 }
 
 public interface IPlayerController
@@ -285,4 +295,6 @@ public interface IPlayerController
     public event Action Jumped;
     public event Action<bool> Crouch;
     public Vector2 FrameInput { get; }
+    public bool IsWalking { get;}
+    public float FrameVelocityY { get; }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     _movement: {x: 0, y: 0}
+    _isWalking: 0
 --- !u!114 &-4859717867086630329
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -44,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     _movement: {x: 1, y: 0}
+    _isWalking: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,12 +6,17 @@ using UnityEngine;
 public class PlayerInputManager : MonoBehaviour
 {
     private MainInputSystem playerInputActions;
+    //Player Movement
     public static Vector2 MOVEMENT = Vector2.zero;
     public static bool JUMP_DOWN = false;
     public static bool JUMP_HELD = false;
     public static bool INTERACT = false;
     public static bool CROUCH = false;
+    public static bool WALKING = false;
     private bool _canMove = true;
+
+    //Player UI
+    public static bool DIALOGUE_BUTTON_DOWN = false;
 
 
     private void Awake(){
@@ -19,17 +24,17 @@ public class PlayerInputManager : MonoBehaviour
     }
 
     private void OnEnable(){
-        EnableInput();
-        Manager_Event.InteractionManager.OnStartInteraction.Get().AddListener(DisableInput);
-        Manager_Event.InteractionManager.OnEndInteraction.Get().AddListener(EnableInput);
+        SetInputState(true, false);
+        Manager_Event.InteractionManager.OnStartInteraction.Get().AddListener(OnStartInteraction);
+        Manager_Event.InteractionManager.OnEndInteraction.Get().AddListener(OnEndInteraction);
         Manager_Event.InteractionManager.OnStartTimeline.Get().AddListener(DisableCanMove);
         Manager_Event.InteractionManager.OnEndTimeline.Get().AddListener(EnableCanMove);
     }
 
     private void OnDisable(){
-        DisableInput();
-        Manager_Event.InteractionManager.OnStartInteraction.Get().RemoveListener(DisableInput);
-        Manager_Event.InteractionManager.OnEndInteraction.Get().RemoveListener(EnableInput);
+        SetInputState(false, false);
+        Manager_Event.InteractionManager.OnStartInteraction.Get().RemoveListener(OnStartInteraction);
+        Manager_Event.InteractionManager.OnEndInteraction.Get().RemoveListener(OnEndInteraction);
         Manager_Event.InteractionManager.OnStartTimeline.Get().AddListener(DisableCanMove);
         Manager_Event.InteractionManager.OnEndTimeline.Get().AddListener(EnableCanMove);
     }
@@ -46,13 +51,29 @@ public class PlayerInputManager : MonoBehaviour
 
         //Interaction
         INTERACT = playerInputActions.Player.Interact.WasPressedThisFrame();
+
+        //Dialogue
+        DIALOGUE_BUTTON_DOWN = playerInputActions.PlayerUI.DialogueButton.WasPressedThisFrame();
     }
 
-    private void EnableInput(){
-        playerInputActions.Player.Enable();
+    private void OnStartInteraction(){
+        SetInputState(false, true);
     }
-    private void DisableInput(){
-        playerInputActions.Player.Disable();
+    private void OnEndInteraction(){
+        SetInputState(true, false);
+    }
+
+    private void SetInputState(bool statePlayer, bool statePLayerUI){
+        //Player Inputs
+        if(statePlayer)
+            playerInputActions.Player.Enable();
+        else
+            playerInputActions.Player.Disable();
+        //UI Inputs
+        if(statePLayerUI)
+            playerInputActions.PlayerUI.Enable();
+        else
+            playerInputActions.PlayerUI.Disable();
     }
 
     private void EnableCanMove(){
