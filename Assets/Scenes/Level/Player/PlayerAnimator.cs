@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -9,7 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     [Header("References")]
     [SerializeField] private Animator _anim;
     [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField] private Transform _spiritTarget;
+    [SerializeField] private List<Transform> _flipTargets;
 
     [Header("Settings")] 
 
@@ -21,7 +22,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private IPlayerController _player;
     private ParticleSystem.MinMaxGradient _currentGradient;
-    private bool _grounded;
+    private bool _grounded = true;
 
     private void Awake()
     {
@@ -59,6 +60,8 @@ public class PlayerAnimator : MonoBehaviour
 
         //Player Animation + Particle
         HandleMovement();
+
+        HandleVerticalVelocity();
     }
 
     #region Update Methods
@@ -79,7 +82,8 @@ public class PlayerAnimator : MonoBehaviour
             //Compare if curent Flip is diferent from Input
             if(_sprite.flipX != _player.FrameInput.x < 0){
                 _sprite.flipX = _player.FrameInput.x < 0;
-                _spiritTarget.localPosition *= new Vector2(-1, 1);
+                foreach(Transform target in _flipTargets)
+                    target.localPosition *= new Vector2(-1, 1);
             }
         }
     }
@@ -91,8 +95,20 @@ public class PlayerAnimator : MonoBehaviour
 
         _anim.SetBool(RunningKey, inputStrength != 0);
 
+        if(_player.IsWalking){
+            _anim.SetFloat(RunningSpeedKey, 0.5f);
+        }else{
+            _anim.SetFloat(RunningSpeedKey, 1f);
+        }
+
         //Particle Scale base on Speed
         _moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
+    }
+
+    private void HandleVerticalVelocity(){
+        float velocityY = _grounded? 0 : _player.FrameVelocityY;
+
+        _anim.SetFloat(VerticalVelocityYKey, velocityY);
     }
 
     #endregion
@@ -103,7 +119,7 @@ public class PlayerAnimator : MonoBehaviour
         _anim.SetTrigger(JumpKey);
         _anim.ResetTrigger(GroundedKey);
 
-
+        //Particles
         if (_grounded) // Avoid coyote
         {
             SetColor(_jumpParticles);
@@ -159,11 +175,12 @@ public class PlayerAnimator : MonoBehaviour
     #region Animation Keys
 
     private static readonly int GroundedKey = Animator.StringToHash("Grounded");
-    private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
+    private static readonly int RunningSpeedKey = Animator.StringToHash("RunningSpeed");
     private static readonly int JumpKey = Animator.StringToHash("Jump");
     private static readonly int CrouchStartKey = Animator.StringToHash("CrouchStart");
     private static readonly int CrouchEndKey = Animator.StringToHash("CrouchEnd");
     private static readonly int RunningKey = Animator.StringToHash("Running");
+    private static readonly int VerticalVelocityYKey = Animator.StringToHash("VerticalVelocityY");
 
     #endregion
 }

@@ -4,5 +4,8 @@
 public enum SceneIndex{
     Menu = 1,
     Caverna,
-    Floresta
+    Floresta,
+    Cidade,
+    Tempestade,
+    Final
 }

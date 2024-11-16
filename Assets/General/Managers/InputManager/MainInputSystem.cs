@@ -152,6 +152,17 @@ public partial class @MainInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d6507a8-d1a7-45b1-a0f1-c885b649c6fd"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -709,6 +720,45 @@ public partial class @MainInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerUI"",
+            ""id"": ""176ba5e6-dc75-4871-9d3b-dd71713c0aca"",
+            ""actions"": [
+                {
+                    ""name"": ""DialogueButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb19a439-1375-4b1a-a393-e524046059c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""29790756-d0e0-423a-be97-e81e223025b5"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DialogueButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5c5289d-1eba-463f-84bc-d8170c50b99d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DialogueButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -734,6 +784,9 @@ public partial class @MainInputSystem: IInputActionCollection2, IDisposable
         // Commom
         m_Commom = asset.FindActionMap("Commom", throwIfNotFound: true);
         m_Commom_Pause = m_Commom.FindAction("Pause", throwIfNotFound: true);
+        // PlayerUI
+        m_PlayerUI = asset.FindActionMap("PlayerUI", throwIfNotFound: true);
+        m_PlayerUI_DialogueButton = m_PlayerUI.FindAction("DialogueButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1025,6 +1078,52 @@ public partial class @MainInputSystem: IInputActionCollection2, IDisposable
         }
     }
     public CommomActions @Commom => new CommomActions(this);
+
+    // PlayerUI
+    private readonly InputActionMap m_PlayerUI;
+    private List<IPlayerUIActions> m_PlayerUIActionsCallbackInterfaces = new List<IPlayerUIActions>();
+    private readonly InputAction m_PlayerUI_DialogueButton;
+    public struct PlayerUIActions
+    {
+        private @MainInputSystem m_Wrapper;
+        public PlayerUIActions(@MainInputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @DialogueButton => m_Wrapper.m_PlayerUI_DialogueButton;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerUIActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Add(instance);
+            @DialogueButton.started += instance.OnDialogueButton;
+            @DialogueButton.performed += instance.OnDialogueButton;
+            @DialogueButton.canceled += instance.OnDialogueButton;
+        }
+
+        private void UnregisterCallbacks(IPlayerUIActions instance)
+        {
+            @DialogueButton.started -= instance.OnDialogueButton;
+            @DialogueButton.performed -= instance.OnDialogueButton;
+            @DialogueButton.canceled -= instance.OnDialogueButton;
+        }
+
+        public void RemoveCallbacks(IPlayerUIActions instance)
+        {
+            if (m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerUIActions @PlayerUI => new PlayerUIActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -1048,5 +1147,9 @@ public partial class @MainInputSystem: IInputActionCollection2, IDisposable
     public interface ICommomActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IPlayerUIActions
+    {
+        void OnDialogueButton(InputAction.CallbackContext context);
     }
 }

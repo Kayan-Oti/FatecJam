@@ -12,9 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Menu.unity
     guid: acfe0e700ab20194999142d0d6ba21a3
   - enabled: 1
-    path: Assets/Scenes/Level/Caverna/Caverna.unity
+    path: Assets/Scenes/Level/1 - Caverna/Caverna.unity
     guid: 2560a5e8ce50fec42b908b7367cb32b4
   - enabled: 1
-    path: Assets/Scenes/Level/Floresta/Floresta.unity
+    path: Assets/Scenes/Level/2 - Floresta/Floresta.unity
     guid: 244c48df6b2f9ac46a06dc142b98e9af
+  - enabled: 1
+    path: Assets/Scenes/Level/3 - Cidade/Cidade.unity
+    guid: 203dea571aa9e594597c13efeb274f72
+  - enabled: 1
+    path: Assets/Scenes/Level/4 - Tempestade/Tempestade.unity
+    guid: 6c54866a91f6fa94c8ce4963e1195bfb
+  - enabled: 1
+    path: Assets/Scenes/Level/5 - Final/Final.unity
+    guid: 573558aba7fcc524495ee24239332564
   m_configObjects: {}

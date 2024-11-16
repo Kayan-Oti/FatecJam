@@ -5,6 +5,7 @@ using UnityEngine;
 public class CarPuzzleLever : Abstract_Interactable
 {
     [SerializeField] private GameObject _carPlataform;
+    [SerializeField] private TutorialInteract _crouchTutorial;
     private bool _hasMoreInteraciton = true;
 
     protected override void Start() {
@@ -16,6 +17,8 @@ public class CarPuzzleLever : Abstract_Interactable
     {
         _carPlataform.SetActive(true);
         _hasMoreInteraciton = false;
+
+        _crouchTutorial.DisableTutorial();
         EndInteraction();
     }
 
