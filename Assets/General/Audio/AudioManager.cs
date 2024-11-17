@@ -73,6 +73,9 @@ public class AudioManager : Singleton<AudioManager>
     public void StopAmbience(){
         _ambienceEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
+    public void SetAmbienceParameter(string parameterName, float parameterValue){
+        _ambienceEventInstance.setParameterByName(parameterName, parameterValue);
+    }
     #endregion
 
     #region Music

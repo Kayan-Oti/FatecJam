@@ -27,6 +27,9 @@ public class Manager_Menu : MonoBehaviour
     }
 
     private void Start(){
+        Invoke(nameof(WaitStart),0.1f);
+    }
+    private void WaitStart(){
         EventSystem.current.SetSelectedGameObject(_playButton);
         _settingsContainer.SetActive(false);
         _creditsContainer.SetActive(false);
@@ -54,22 +57,26 @@ public class Manager_Menu : MonoBehaviour
 
     //--Menu Settings
     public void OnClick_Settings(){
+        Debug.Log("OnClick_Settings");
         _settingsContainer.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_settingsFirstButton);
     }
 
     public void OnClick_SettingsClose(){
+        Debug.Log("OnClick_SettingsClose");
         _settingsContainer.SetActive(false);
         EventSystem.current.SetSelectedGameObject(_settingsButton);
     }
 
     //--Menu Credits
     public void OnClick_Credits(){
+        Debug.Log("OnClick_Credits");
         _creditsContainer.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_creditsFirstButton);
     }
 
     public void OnClick_CreditsClose(){
+        Debug.Log("OnClick_CreditsClose");
         _creditsContainer.SetActive(false);
         EventSystem.current.SetSelectedGameObject(_creditsButton);
     }
