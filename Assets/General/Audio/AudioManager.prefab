@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5aaddb9f8f9e7343a26949f15e02bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolume: 1
-  musicVolume: 1
-  ambienceVolume: 1
-  sfxVolume: 1
+  masterVolume: 0.75
+  musicVolume: 0.75
+  ambienceVolume: 0.75
+  sfxVolume: 0.75
 --- !u!1 &6372068769567503978
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +107,13 @@ MonoBehaviour:
       Data3: 1746368133
       Data4: -130960071
     Path: event:/Ambience/Wind
+  <StrongWind>k__BackingField:
+    Guid:
+      Data1: -794184391
+      Data2: 1271953227
+      Data3: -732066385
+      Data4: -333772353
+    Path: event:/Ambience/StrongWind
   <ButtonHover>k__BackingField:
     Guid:
       Data1: 1159539473

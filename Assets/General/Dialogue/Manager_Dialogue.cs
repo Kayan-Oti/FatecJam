@@ -40,7 +40,7 @@ public class Manager_Dialogue : MonoBehaviour
         _dialogueText.text = "";
     }
 
-    public void StartDialogue(SO_Dialogue dialogue, Action onEndDialogueAction){
+    public void StartDialogue(SO_Dialogue dialogue, Action onEndDialogueAction = null){
         _dialogue = dialogue;
         _onEndDialogueAction  = onEndDialogueAction;
         StartCoroutine(StartDialogueCoroutine());
