@@ -12,6 +12,7 @@ public class LevelManager_Caverna : MonoBehaviour
     [SerializeField] private UI_ManagerAnimation _cutsceneAnimator;
     [SerializeField] private CinemachineImpulseSource _cameraShake;
     [SerializeField] private CanvasGroup _moveTutorial;
+    private const string PARAMETER_NAME = "wind_intensity";
 
     private void OnEnable() {
         Manager_Event.GameManager.OnLoadedScene.Get().AddListener(StartCutscene);
@@ -23,6 +24,9 @@ public class LevelManager_Caverna : MonoBehaviour
 
     private void Start() {
         _moveTutorial.alpha = 0;
+        AudioManager.Instance.StopAmbience();
+        AudioManager.Instance.InitializeAmbience(FMODEvents.Instance.WindAmbience);
+        AudioManager.Instance.SetAmbienceParameter(PARAMETER_NAME, 0f);
     }
 
     [ButtonMethod]
@@ -42,6 +46,7 @@ public class LevelManager_Caverna : MonoBehaviour
         _cutsceneAnimator.PlayAnimation("End");
     }
     public void CavernaTrigger1(){
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.BoneDrop, transform.position);
         _cameraShake.GenerateImpulseWithVelocity(new Vector3(1,-1,0));
     }
 

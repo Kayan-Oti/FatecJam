@@ -16,6 +16,7 @@ public class CarPuzzleLever : Abstract_Interactable
 
     protected override void InteractionAction()
     {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.CarOpen, transform.position);
         _carPlataform.enabled = true;
         _capoPivot.transform.eulerAngles = new Vector3(0, 0, 37);
         _hasMoreInteraciton = false;

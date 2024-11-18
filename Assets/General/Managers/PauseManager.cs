@@ -44,6 +44,9 @@ public class PauseManager : MonoBehaviour
 
     //Button Action
     public void BackToMenu(){
+        AudioManager.Instance.StopAmbience();
+        AudioManager.Instance.StopMusic();
         GameManager.Instance.LoadScene(SceneIndex.Menu);
+        ChangePauseState();
     }
 }

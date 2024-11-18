@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerController
     public bool IsWalking => _frameInput.Walking;
 
     #endregion
+    public bool IsForcedToCrouch = false;
 
     private float _time;
 
@@ -39,6 +40,17 @@ public class PlayerMovement : MonoBehaviour, IPlayerController
 
         _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
         CrouchSetup();
+    }
+
+    private void OnEnable() {
+        Manager_Event.GameManager.OnForcedToCrouch.Get().AddListener(ForceToCrouch);
+    }
+    private void OnDisable() {
+        Manager_Event.GameManager.OnForcedToCrouch.Get().RemoveListener(ForceToCrouch);  
+    }
+
+    private void ForceToCrouch(bool state){
+        IsForcedToCrouch = state;
     }
 
     private void Update()
@@ -214,19 +226,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerController
     private Vector2 _originalColliderOffset;
 
     private void HandleCrouch(){
-        //Input
-        if(_frameInput.Crouch){
-            if(_grounded)
-                _isCrouching = true;
-            else
-                _isCrouching = false;
-        }else{
-            //If can Stand up
-            if (_wasCrouching && Physics2D.OverlapCircle(_ceilingCheck.position, _ceilingRadius, _whatIsCelling))
-                _isCrouching = true;
-            else
-                _isCrouching = false;
-        }
+        SetCrouch();
 
         //Crouching
         if(_isCrouching){
@@ -241,6 +241,27 @@ public class PlayerMovement : MonoBehaviour, IPlayerController
         }
         
         Debug.DrawRay(_ceilingCheck.position, Vector2.up * _ceilingRadius, Color.red);
+    }
+
+    private void SetCrouch(){
+        if(IsForcedToCrouch){
+            _isCrouching = true;
+            return;
+        }
+
+        //Input
+        if(_frameInput.Crouch){
+            if(_grounded)
+                _isCrouching = true;
+            else
+                _isCrouching = false;
+        }else{
+            //If can Stand up
+            if (_wasCrouching && Physics2D.OverlapCircle(_ceilingCheck.position, _ceilingRadius, _whatIsCelling))
+                _isCrouching = true;
+            else
+                _isCrouching = false;
+        }
     }
 
     private void SetOnCrunchEvent(bool state){

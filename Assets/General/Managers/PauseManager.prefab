@@ -173,7 +173,7 @@ MonoBehaviour:
       hasDelay: 0
       delaySeconds: 0
       target: {fileID: 4263791177095881013}
-      SOAnimation: {fileID: 11400000, guid: 167a40c7fb111a640b0fc3c9c7a91b9a, type: 2}
+      SOAnimation: {fileID: 11400000, guid: c49f36762e5430d4abe6c4a4ac5515a9, type: 2}
     - name: Box
       enableInteractable: 1
       enableVisibility: 1
@@ -181,7 +181,7 @@ MonoBehaviour:
       hasDelay: 0
       delaySeconds: 0
       target: {fileID: 5940179185121814149}
-      SOAnimation: {fileID: 11400000, guid: 01cdf079a6982bc4e8c64dfd5720df3d, type: 2}
+      SOAnimation: {fileID: 11400000, guid: cd4e479dfd98f554587d4af2806bf55f, type: 2}
   - name: End
     useUnascaleTime: 1
     animations:
@@ -192,7 +192,7 @@ MonoBehaviour:
       hasDelay: 0
       delaySeconds: 0
       target: {fileID: 4263791177095881013}
-      SOAnimation: {fileID: 11400000, guid: 9d1a10ee198e59844a389f0008c044de, type: 2}
+      SOAnimation: {fileID: 11400000, guid: 606be4988e2fb4540a20fd5c99ab4162, type: 2}
     - name: Box
       enableInteractable: 0
       enableVisibility: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
       hasDelay: 0
       delaySeconds: 0
       target: {fileID: 5940179185121814149}
-      SOAnimation: {fileID: 11400000, guid: 3eb4b53e2373da448ba01e469d561563, type: 2}
+      SOAnimation: {fileID: 11400000, guid: 97eefb7799d693841bf57d3518a09ce4, type: 2}
 --- !u!1 &6669846196870080508
 GameObject:
   m_ObjectHideFlags: 0

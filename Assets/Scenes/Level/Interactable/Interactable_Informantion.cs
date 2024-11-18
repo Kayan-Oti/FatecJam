@@ -11,7 +11,7 @@ public class Interactable_Informantion : Abstract_Interactable
     protected override void InteractionAction()
     {
         _hasBeenCollected = true;
-        _manager.OnCollect(this);
+        // _manager.OnCollect(this);
     }
 
     public void DisableCollectable(){

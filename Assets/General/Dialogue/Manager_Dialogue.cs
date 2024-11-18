@@ -12,6 +12,7 @@ public class Manager_Dialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _dialogueText;
     [SerializeField] private GameObject _button;
     [SerializeField] private float typeSpeed = 15f;
+    [SerializeField] public bool CanClick = true;
     private SO_Dialogue _dialogue;
     private Action _onEndDialogueAction;
 
@@ -24,7 +25,7 @@ public class Manager_Dialogue : MonoBehaviour
 
     private void Start(){
         ResetText();
-        _button.SetActive(false);
+        SetButtonActivity(false);
     }
 
     private void Update() {
@@ -40,6 +41,13 @@ public class Manager_Dialogue : MonoBehaviour
         _dialogueText.text = "";
     }
 
+    private void SetButtonActivity(bool state){
+        if(!CanClick)
+            state = false;
+
+        _button.SetActive(state);
+    }
+
     public void StartDialogue(SO_Dialogue dialogue, Action onEndDialogueAction = null){
         _dialogue = dialogue;
         _onEndDialogueAction  = onEndDialogueAction;
@@ -48,7 +56,7 @@ public class Manager_Dialogue : MonoBehaviour
 
     private IEnumerator StartDialogueCoroutine(){
         ResetText();
-        _button.SetActive(true);
+        SetButtonActivity(true);
 
         //Wait Animation "Start" end
         yield return _animationManager.PlayAnimationCoroutine("Start");
@@ -67,7 +75,7 @@ public class Manager_Dialogue : MonoBehaviour
 
     private void EndDialogue(){
         _paragraphs.Clear();
-        _button.SetActive(false);
+        SetButtonActivity(false);
         _isDialogueActive = false;
 
         //Libera o player ao terminar a animação

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 
 
@@ -20,15 +21,19 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private ParticleSystem _moveParticles;
     [SerializeField] private ParticleSystem _landParticles;
 
-    private IPlayerController _player;
+    private PlayerMovement _player;
     private ParticleSystem.MinMaxGradient _currentGradient;
     private bool _grounded = true;
+    private EventInstance _playerFootSteps;
 
     private void Awake()
     {
-        _player = GetComponentInParent<IPlayerController>();
+        _player = GetComponentInParent<PlayerMovement>();
     }
 
+    private void Start() {
+        _playerFootSteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.FootSteps);
+    }
     private void OnEnable()
     {
         _player.Jumped += OnJumped;
@@ -93,6 +98,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         var inputStrength = Mathf.Abs(_player.FrameInput.x);
 
+        //Animation
         _anim.SetBool(RunningKey, inputStrength != 0);
 
         if(_player.IsWalking){
@@ -100,6 +106,28 @@ public class PlayerAnimator : MonoBehaviour
         }else{
             _anim.SetFloat(RunningSpeedKey, 1f);
         }
+
+        if(_player.IsForcedToCrouch){
+            _anim.SetFloat(CrouchSpeedKey, 0.5f);
+        }
+        else if(inputStrength == 0){
+            _anim.SetFloat(CrouchSpeedKey, 0f);
+        }
+        else{
+            _anim.SetFloat(CrouchSpeedKey, 1f);
+        }
+
+
+        //Sound
+        if(inputStrength != 0 && _grounded){
+            PLAYBACK_STATE playbackState;
+            _playerFootSteps.getPlaybackState(out playbackState);
+            if(playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                _playerFootSteps.start();
+        }
+        else
+            _playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
+
 
         //Particle Scale base on Speed
         _moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
@@ -176,11 +204,17 @@ public class PlayerAnimator : MonoBehaviour
 
     private static readonly int GroundedKey = Animator.StringToHash("Grounded");
     private static readonly int RunningSpeedKey = Animator.StringToHash("RunningSpeed");
+    private static readonly int CrouchSpeedKey = Animator.StringToHash("CrouchSpeed");
     private static readonly int JumpKey = Animator.StringToHash("Jump");
     private static readonly int CrouchStartKey = Animator.StringToHash("CrouchStart");
     private static readonly int CrouchEndKey = Animator.StringToHash("CrouchEnd");
     private static readonly int RunningKey = Animator.StringToHash("Running");
     private static readonly int VerticalVelocityYKey = Animator.StringToHash("VerticalVelocityY");
+
+    private void OnDestroy() {
+        _playerFootSteps.stop(STOP_MODE.IMMEDIATE);
+        _playerFootSteps.release();
+    }
 
     #endregion
 }
