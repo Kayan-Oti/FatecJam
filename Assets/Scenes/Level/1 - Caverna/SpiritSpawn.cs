@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpiritSpawn : Dialogue_Trigger
 {
     [SerializeField] private SpiritController _spirit;
+    [SerializeField] private SpiritAnimation _spiritAnimation;
     [SerializeField] private Transform _targetPosition;
     [SerializeField] private Transform _followPlayerTarget;
     [SerializeField] private AnimationCurve _moveEase;
@@ -29,6 +30,9 @@ public class SpiritSpawn : Dialogue_Trigger
         tmp.a = 0;
         sprite.color = tmp;
 
+        //Music
+        AudioManager.Instance.InitializeMusic(FMODEvents.Instance.CavernaMusic, MusicIntensity.Intensity3);
+
         //Fade Animation
         Sequence animation = DOTween.Sequence();
         animation.Insert(0, sprite.DOFade(1f, 1f));
@@ -37,6 +41,7 @@ public class SpiritSpawn : Dialogue_Trigger
         //Ação extra ao terminar a animation
         _extraEndAction = () => {
             _spirit.target = _followPlayerTarget;
+            _spiritAnimation._canFlip = true;
             _exitCollider2D.enabled = true;
         };
 

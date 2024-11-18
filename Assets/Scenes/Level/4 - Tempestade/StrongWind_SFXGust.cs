@@ -21,8 +21,8 @@ public class StrongWind_SFXGust : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")){
-            _inArea = false;
             SetIntensity(0f);
+            _inArea = false;
         }
     }
 }

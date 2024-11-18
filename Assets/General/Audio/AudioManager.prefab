@@ -100,6 +100,41 @@ MonoBehaviour:
       Data3: -1761638230
       Data4: -645998193
     Path: event:/Music/MenuMusic
+  <CavernaMusic>k__BackingField:
+    Guid:
+      Data1: -1495170209
+      Data2: 1252938281
+      Data3: 617000838
+      Data4: 1697452241
+    Path: event:/Music/CavernaMusic
+  <FlorestaMusic>k__BackingField:
+    Guid:
+      Data1: 796481805
+      Data2: 1141824784
+      Data3: 1541820298
+      Data4: -1940867977
+    Path: event:/Music/FlorestaMusic
+  <CidadeMusic>k__BackingField:
+    Guid:
+      Data1: -587807727
+      Data2: 1135171832
+      Data3: 571075247
+      Data4: 782793912
+    Path: event:/Music/CidadeMusic
+  <TempestadeMusic>k__BackingField:
+    Guid:
+      Data1: 513742774
+      Data2: 1298483165
+      Data3: 2042559415
+      Data4: -1382237001
+    Path: event:/Music/TempestadeMusic
+  <FinalMusic>k__BackingField:
+    Guid:
+      Data1: -2051888042
+      Data2: 1128616430
+      Data3: 831790979
+      Data4: -9772973
+    Path: event:/Music/FinalMusic
   <WindAmbience>k__BackingField:
     Guid:
       Data1: 203621472
@@ -120,39 +155,60 @@ MonoBehaviour:
       Data2: 1168093100
       Data3: 1268119430
       Data4: -846124681
-    Path: event:/UI/ButtonHover
+    Path: event:/SFX/UI/ButtonHover
   <ButtonClick>k__BackingField:
     Guid:
       Data1: -1025192186
       Data2: 1086316508
       Data3: -370778989
       Data4: -1245186357
-    Path: event:/UI/ButtonClick
+    Path: event:/SFX/UI/ButtonClick
+  <ButtonPlay>k__BackingField:
+    Guid:
+      Data1: 1378414903
+      Data2: 1207265216
+      Data3: 414608524
+      Data4: 1783055582
+    Path: event:/SFX/UI/ButtonPlay
   <LoadingScreenStart>k__BackingField:
     Guid:
       Data1: 1048474341
       Data2: 1159944987
       Data3: 1402332082
       Data4: -1920633183
-    Path: event:/UI/LoadScreenStart
+    Path: event:/SFX/UI/LoadScreenStart
   <LoadingScreenEnd>k__BackingField:
     Guid:
       Data1: -1511780992
       Data2: 1195400565
       Data3: 1187674042
       Data4: -211365565
-    Path: event:/UI/LoadScreenEnd
+    Path: event:/SFX/UI/LoadScreenEnd
   <FootSteps>k__BackingField:
     Guid:
       Data1: 1158635764
       Data2: 1239443067
       Data3: -294803055
       Data4: 770026295
-    Path: event:/Player/FootSteps
+    Path: event:/SFX/Player/FootSteps
   <OnGrounded>k__BackingField:
     Guid:
       Data1: 545385992
       Data2: 1276310420
       Data3: -840692598
       Data4: 812775796
-    Path: event:/Player/Onground
+    Path: event:/SFX/Player/OnGround
+  <CarOpen>k__BackingField:
+    Guid:
+      Data1: -1917034744
+      Data2: 1200061495
+      Data3: 1093094289
+      Data4: 3105629
+    Path: event:/SFX/Misc/CarOpen
+  <BoneDrop>k__BackingField:
+    Guid:
+      Data1: 1501533621
+      Data2: 1323895714
+      Data3: 561613757
+      Data4: -1046557294
+    Path: event:/SFX/Misc/BoneDrop

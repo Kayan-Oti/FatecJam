@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5513a8a7d33a873458e6528f6e9c6a81, type: 3}
+  m_Name: Dialogue_Caverna
+  m_EditorClassIdentifier: 
+  Name: Monge
+  loop: 0
+  Paragraphs:
+  - Ora, ora, quem vemos aqui.
+  - "N\xE3o posso dizer que estou menos que embasbacado. Voc\xEA \xE9 uma guerreira
+    e tanto, n\xE3o?"
+  - "Ah... meus anos de medita\xE7\xE3o me renderam vistas impressionantes como essa,
+    vejam que belos filhotes... devem estar famintos."
+  - "Vamos, ser\xE1 um prazer lhe ajudar a ter um final melhor que o da minha esp\xE9cie."

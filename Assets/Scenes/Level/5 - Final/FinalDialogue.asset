@@ -15,6 +15,8 @@ MonoBehaviour:
   Name: Monge
   loop: 0
   Paragraphs:
-  - "No fim, o que deve ser, ser\xE1."
-  - "Talvez a humanidade n\xE3o consiga..."
-  - Mas a vida sempre encontra um meio.
+  - "... Cada dia \xE9 uma d\xE1diva,\r\n\xC9 por isso que de noite, as estrelas
+    surgem para comemorar o seu \xEAxito."
+  - "Quem dera a humanidade tivesse percebido isso.\r\nMas voc\xEA ainda pode mostrar
+    para elas que elas est\xE3o l\xE1 para celebrar,"
+  - "Celebrar mais um novo dia que ir\xE1 chegar!"

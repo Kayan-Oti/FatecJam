@@ -24,6 +24,9 @@ public static class Manager_Event
         public GenericEvent<LoadedScene> OnLoadedScene = new GenericEvent<LoadedScene>();
         public class ChangeCurrentSelectedUI: UnityEvent<GameObject> {}
         public GenericEvent<ChangeCurrentSelectedUI> OnChangeCurrentSelectedUI = new GenericEvent<ChangeCurrentSelectedUI>();
+
+        public class ForcedToCrouch: UnityEvent<bool> {}
+        public GenericEvent<ForcedToCrouch> OnForcedToCrouch = new GenericEvent<ForcedToCrouch>();
     }
 
     public class InteractionEvents{

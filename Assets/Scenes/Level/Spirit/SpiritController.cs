@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpiritController : MonoBehaviour
 {
-    public Transform target;
-    public float followSpeed = 2f;
+    [SerializeField] public Transform target;
+    [SerializeField] private float followSpeed = 2f;
 
     private void Update()
     {

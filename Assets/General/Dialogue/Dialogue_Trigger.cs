@@ -7,7 +7,7 @@ public class Dialogue_Trigger : Abstract_Interactable
 {
     [SerializeField] protected Manager_Dialogue _manager;
     [SerializeField] protected List<SO_Dialogue> _soDialogue;
-    protected Action _extraEndAction;
+    protected Action _extraEndAction = null;
     protected int _currentDialogue = 0;
 
     protected override bool HasMoreInteraction()
@@ -17,6 +17,7 @@ public class Dialogue_Trigger : Abstract_Interactable
 
     protected override void InteractionAction()
     {
+        Debug.Log("Teste");
         _manager.StartDialogue(_soDialogue[_currentDialogue], () => {
             EndInteraction();
             _extraEndAction?.Invoke();

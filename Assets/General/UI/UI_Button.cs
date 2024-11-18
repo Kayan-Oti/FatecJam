@@ -1,27 +1,11 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class UI_Button : UI_Abstract_Selectable, IPointerEnterHandler, IPointerExitHandler, ISubmitHandler
+public class UI_Button : UI_Abstract_Selectable, IPointerEnterHandler, IPointerExitHandler, ISubmitHandler, IPointerClickHandler
 {
-
-    protected virtual void OnClickEvent(){
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ButtonClick, transform.position);
-    }
-
-    protected virtual void OnEnterEvent(){
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ButtonHover, transform.position);
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        eventData.selectedObject = gameObject;
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        eventData.selectedObject = null;
-    }
-
+    [SerializeField] protected UnityEvent _onclick;
     protected override void OnSelectDo(BaseEventData eventData)
     {
         OnEnterEvent();
@@ -32,6 +16,27 @@ public class UI_Button : UI_Abstract_Selectable, IPointerEnterHandler, IPointerE
    protected override void OnDeselectDo(BaseEventData eventData)
     {
         transform.DOScale(Vector3.one, 0.25f);
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        eventData.selectedObject = gameObject;
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        eventData.selectedObject = null;
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnClickEvent();
+    }
+
+    protected virtual void OnClickEvent(){
+        _onclick.Invoke();
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ButtonClick, transform.position);
+    }
+
+    protected virtual void OnEnterEvent(){
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ButtonHover, transform.position);
     }
 
     public void OnSubmit(BaseEventData eventData)

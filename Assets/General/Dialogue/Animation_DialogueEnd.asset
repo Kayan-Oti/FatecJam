@@ -46,5 +46,5 @@ MonoBehaviour:
     RotationZ: 0
     DoScale: 1
     StyleScale: 1
-    DoFade: 0
-    StyleFade: 0
+    DoFade: 1
+    StyleFade: 1

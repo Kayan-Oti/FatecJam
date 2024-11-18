@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 public class Manager_Menu : MonoBehaviour
 {
     [Header("Play")]
+    [SerializeField] private GameObject _mainContainer;
     [SerializeField] private GameObject _playButton;
     [Header("Settings")]
     [SerializeField] private GameObject _settingsContainer;
@@ -57,32 +58,33 @@ public class Manager_Menu : MonoBehaviour
 
     //--Menu Settings
     public void OnClick_Settings(){
-        Debug.Log("OnClick_Settings");
+        _mainContainer.SetActive(false);
         _settingsContainer.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_settingsFirstButton);
     }
 
     public void OnClick_SettingsClose(){
-        Debug.Log("OnClick_SettingsClose");
+        _mainContainer.SetActive(true);
         _settingsContainer.SetActive(false);
         EventSystem.current.SetSelectedGameObject(_settingsButton);
     }
 
     //--Menu Credits
     public void OnClick_Credits(){
-        Debug.Log("OnClick_Credits");
+        _mainContainer.SetActive(false);
         _creditsContainer.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_creditsFirstButton);
     }
 
     public void OnClick_CreditsClose(){
-        Debug.Log("OnClick_CreditsClose");
+        _mainContainer.SetActive(true);
         _creditsContainer.SetActive(false);
         EventSystem.current.SetSelectedGameObject(_creditsButton);
     }
 
     //--Menu Exit
     public void OnClick_Exit(){
+        Debug.Log("OnClick_Exit");
         Application.Quit();
     }
 

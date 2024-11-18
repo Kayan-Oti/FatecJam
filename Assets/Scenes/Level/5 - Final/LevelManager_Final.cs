@@ -24,6 +24,11 @@ public class LevelManager_Final : MonoBehaviour
         Manager_Event.GameManager.OnLoadedScene.Get().RemoveListener(StartCutscene);
     }
 
+    private void Start() {
+        AudioManager.Instance.StopAmbience();
+        AudioManager.Instance.InitializeMusic(FMODEvents.Instance.FinalMusic, MusicIntensity.Intensity3);
+    }
+
 
     [ButtonMethod]
     public void StartCutscene(){
